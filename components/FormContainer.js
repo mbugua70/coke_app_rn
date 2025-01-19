@@ -1,16 +1,17 @@
-import { View, Text, StyleSheet} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import React, {useState} from 'react';
+import { View, Text, StyleSheet, Pressable} from 'react-native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import React, {useState, useLayoutEffect} from 'react';
 
 import Input from "./Input";
 import FlatButton from "../UI/FlatButton";
 
 
-const FormContainer = ({isLogin, onSubmit, credentialsInvalid }) => {
-   const [enteredName, setEnteredName] = useState('');
-    const [enteredPhone, setEnteredPhone] = useState('');
-    const [enteredRegion, setEnteredRegion] = useState('');
-    const navigaton = useNavigation();
+const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, phone, region, isUpdating}) => {
+   const [enteredName, setEnteredName] = useState(name ? name : "");
+    const [enteredPhone, setEnteredPhone] = useState(phone ? phone : "");
+    const [enteredRegion, setEnteredRegion] = useState(region ? region : "");
+    const isFocused = useIsFocused()
+    const navigation = useNavigation();
 
 
     const {
@@ -34,12 +35,37 @@ const FormContainer = ({isLogin, onSubmit, credentialsInvalid }) => {
     }
 
     function submitHandler() {
+      console.log("text",enteredName, enteredPhone, enteredRegion)
       onSubmit({
         name: enteredName,
         phone: enteredPhone,
         region: enteredRegion,
       });
+
+
+      if (isUpdating && enteredName !== "" && enteredPhone !== "" &&  enteredRegion !== "") {
+        // navigation.setParams(
+        //    { name: enteredName, phone: enteredPhone, region: enteredRegion },
+        // );
+        navigation.goBack();
+      }
     }
+
+    useLayoutEffect(() => {
+      navigation.setOptions({
+        headerRight: () => {
+          return (
+            <Pressable
+              onPress={submitHandler}
+              style={({ pressed }) =>
+                pressed ? [styles.button, styles.pressed] : styles.button
+              }>
+              <Text style={styles.textButton}>Save</Text>
+            </Pressable>
+          );
+        },
+      });
+    }, [navigation, submitHandler]);
 
 
   return (
@@ -74,9 +100,9 @@ const FormContainer = ({isLogin, onSubmit, credentialsInvalid }) => {
 
        {/* button content */}
         <View style={styles.submitContainer}>
-         <FlatButton onPress={submitHandler}>
+         {!isUpdating &&  <FlatButton onPress={submitHandler}>
             Register
-         </FlatButton>
+         </FlatButton>}
         </View>
 
        </View>
@@ -90,6 +116,16 @@ const styles = StyleSheet.create({
 
   submitContainer: {
     marginTop: 20,
-  }
+  },
+  textButton: {
+    fontSize: 16,
+    fontWeight: "400",
+  },
+  button: {
+    padding: 6,
+  },
+  pressed: {
+    opacity: 0.75,
+  },
 
 })

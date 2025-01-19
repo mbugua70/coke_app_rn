@@ -10,15 +10,18 @@ import CocaColaTitle from "../UI/CokeHead"
 const Login = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState(null)
-  const {authenticate} = useContext(AuthContext);
+  const {authenticate, isAuthenticate} = useContext(AuthContext);
+
+  console.log("login isauth", isAuthenticate)
 
   async function loginHandler({name, phone, region}){
     try{
       setIsAuthenticated(true)
-      setIsAuthenticated(false)
       const tokenData = { name, phone, region };
 
       authenticate(JSON.stringify(tokenData))
+      setIsAuthenticated(false)
+
 
     }catch(error){
 
@@ -70,7 +73,7 @@ useEffect(() => {
            <CocaColaTitle size="40"/>
          </View>
 
-         <AuthContent isLogin onAuthenticate={loginHandler}/>
+         <AuthContent isLogin isAuthenticate={isAuthenticate} onAuthenticate={loginHandler} isUpdating={false}/>
 
     </View>
   )

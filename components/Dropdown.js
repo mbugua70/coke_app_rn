@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 
 
 
-  const DropdownComponentAge = ({ data, label, isInvalid}) => {
+  const DropdownComponent = ({ data, label, isInvalid, onUpdateValue}) => {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
@@ -20,7 +20,7 @@ import React, { useState } from 'react';
                 {label}
         </Text>
         <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+          style={[styles.dropdown, isFocus && { borderColor: 'blue' }, isInvalid && { borderColor: GlobalStyles.colors.error500}, isInvalid && styles.selectError]}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           data={data}
@@ -32,6 +32,7 @@ import React, { useState } from 'react';
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={item => {
+            onUpdateValue(item.value);
             setValue(item.value);
             setIsFocus(false);
           }}
@@ -40,7 +41,7 @@ import React, { useState } from 'react';
     );
   };
 
-  export default DropdownComponentAge;
+  export default DropdownComponent;
 
   const styles = StyleSheet.create({
     inputContainer: {
@@ -53,7 +54,6 @@ import React, { useState } from 'react';
          backgroundColor: GlobalStyles.colors.primary50,
          borderRadius: 4,
          fontSize: 16,
-         borderColor: GlobalStyles.colors.gray700,
          borderWidth: 1,
     },
     icon: {
@@ -76,4 +76,7 @@ import React, { useState } from 'react';
       labelInvalid: {
         color: GlobalStyles.colors.error500,
       },
+      selectError: {
+        backgroundColor: GlobalStyles.colors.error50
+      }
   });
