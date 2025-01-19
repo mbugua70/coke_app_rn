@@ -53,6 +53,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
 
       return;
     }
+    // this will be function to submit our data to the backend
    console.log("report input", name, phone, age, soda, beverage)
   }
 
