@@ -149,6 +149,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid }) => {
             value={enteredPhone}
             isInvalid={phoneIsInvalid}
             placeholder='Enter phone number'
+            keyboardType="numeric"
           />
 
           <DropdownComponent
