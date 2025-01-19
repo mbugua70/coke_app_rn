@@ -86,6 +86,7 @@ const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, pho
           value={enteredPhone}
           isInvalid={phoneIsInvalid}
           icon="phone"
+          keyboardType="numeric"
         />
 
 
