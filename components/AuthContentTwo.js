@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
-// import { Colors } from '../../constants/styles';
-import FormContainerTwo from "./FormContainerTwo";
 import { SummaryForm } from "../http/api";
+// import { Colors } from '../../constants/styles';
+
+
+import Toast from 'react-native-toast-message';
+import FormContainerTwo from "./FormContainerTwo";
 
 function AuthContentTwo({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
@@ -91,14 +93,23 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
 
       // Optionally, show success feedback to the user
       // adding user UI  alert message for successful data upload
-      Alert.alert("Success", "Data submitted successfully!");
+      Toast.show({
+        type: 'success',
+        text1: 'Success',
+        text2: 'Data submitted successfully!'
+      });
     } catch (error) {
       setIsSubmitting(false)
       console.error("Error submitting form:", error);
-      Alert.alert(
-        "Submission failed",
-        error.message || "An unknown error occurred."
-      );
+      Toast.show({
+        type: 'error',
+        text1: 'Submission failed',
+        text2:  error.message || "An unknown error occurred."
+      });
+      // Alert.alert(
+      //   "Submission failed",
+      //   error.message || "An unknown error occurred."
+      // );
     }
   }
 

@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Toast from 'react-native-toast-message';
 import * as SplashScreen from "expo-splash-screen";
 import { useContext, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
@@ -173,6 +174,7 @@ export default function App() {
       <AuthContextProvider>
         <TokenHolder />
       </AuthContextProvider>
+      <Toast/>
     </>
   );
 }
