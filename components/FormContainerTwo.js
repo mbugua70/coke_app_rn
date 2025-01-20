@@ -240,7 +240,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting }
 
           {/* button content */}
           <View style={styles.submitContainer}>
-            <FlatButton isSubmiting={isSubmiting} onPress={submitHandler}>{isSubmiting ? <ActivityIndicator animating={true} color={MD2Colors.lightBlueA700} /> : "SUBMIT"}</FlatButton>
+            {isSubmiting ? <ActivityIndicator animating={true} color={MD2Colors.lightBlueA700} size="small"/> :  <FlatButton isSubmiting={isSubmiting} onPress={submitHandler}>SUBMIT</FlatButton>}
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
