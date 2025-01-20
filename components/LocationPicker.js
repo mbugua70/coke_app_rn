@@ -52,6 +52,7 @@ const LocationPicker = ({onLocationHandler}) => {
             long: route.params.pickedlng
           }
           setPickedLocation(mapPickedLocation)
+
         }
       }, [route, isFocused])
 
@@ -92,7 +93,7 @@ const LocationPicker = ({onLocationHandler}) => {
 
       if(pickedLocation){
         const locationUrl =  getGoogleMapPreview(pickedLocation.lat, pickedLocation.long);
-
+        onLocationHandler(pickedLocation);
         if(locationUrl){
           content =  <Image style={styles.image} source={{uri:locationUrl}}/>
         }else{

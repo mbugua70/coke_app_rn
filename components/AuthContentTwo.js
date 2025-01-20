@@ -1,10 +1,10 @@
-import { useState} from 'react';
-import { Alert, StyleSheet, View} from 'react-native';
-import {useNavigation} from "@react-navigation/native";
-
+import { useState } from "react";
+import { Alert, StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // import { Colors } from '../../constants/styles';
-import FormContainerTwo from './FormContainerTwo';
+import FormContainerTwo from "./FormContainerTwo";
+import { SummaryForm } from "../http/api";
 
 function AuthContentTwo({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
@@ -16,10 +16,23 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     beverage: false,
   });
 
-
-  function submitHandler(credentials) {
-    let { name, phone, age, soda, beverage } = credentials;
-
+  async function submitHandler(credentials) {
+    let {
+      name,
+      phone,
+      age,
+      soda,
+      beverage,
+      reason,
+      frequency,
+      purchase,
+      variant,
+      sku,
+      pricing,
+      feedback,
+      lat,
+      long,
+    } = credentials;
 
     phone = phone.trim();
     name = name.trim();
@@ -34,7 +47,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     const sodaIsValid = soda.length > 2;
     const beverageIsValid = beverage.length > 2;
 
-
     if (
       !beverageIsValid ||
       !sodaIsValid ||
@@ -42,7 +54,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
       !nameIsValid ||
       !phoneIsValid
     ) {
-      Alert.alert('Invalid input', 'Please check your input values.');
+      Alert.alert("Invalid input", "Please check your input values.");
       setCredentialsInvalid({
         name: !nameIsValid,
         soda: !sodaIsValid,
@@ -54,7 +66,24 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
       return;
     }
     // this will be function to submit our data to the backend
-   console.log("report input", name, phone, age, soda, beverage)
+    const response = await SummaryForm(
+      name,
+      phone,
+      age,
+      soda,
+      beverage,
+      reason,
+      frequency,
+      purchase,
+      variant,
+      sku,
+      pricing,
+      feedback,
+      lat,
+      long
+    );
+
+    console.log(response);
   }
 
   return (
@@ -64,7 +93,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
       />
-
     </View>
   );
 }
@@ -80,6 +108,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
 
     // backgroundColor: Colors.primary800,
-
   },
 });
