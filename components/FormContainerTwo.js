@@ -123,6 +123,14 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid }) => {
       soda: enteredSoda,
       beverage: enteredBeverage,
       age: enteredAge,
+      soda: enteredSoda,
+      frequency: enteredFrequency,
+      purchase: enteredPurchase,
+      variant: enteredVariant,
+      pricing: enteredPricing,
+      feedback: enteredFeedback,
+      lat: location.lat,
+      long: location.long,
     });
   }
 
