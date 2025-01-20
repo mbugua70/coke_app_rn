@@ -10,7 +10,7 @@ import { GlobalStyles } from '../Constants/Globalcolors';
 import SecondaryButton from './SecondaryButton';
 
 
-const LocationPicker = ({onLocationHandler}) => {
+const LocationPicker = ({onLocationHandler, resetForm}) => {
         const [locationPermissionInformation, requestPermission] = Location.useForegroundPermissions();
         const [isFetchingLocation, setIsFetchingLocation] = useState(false);
         const [pickedLocation, setPickedLocation] = useState(null)
@@ -107,6 +107,10 @@ const LocationPicker = ({onLocationHandler}) => {
         }
 
       }
+
+      useEffect(() => {
+       setPickedLocation("");
+      }, [resetForm])
 
   return (
     <View>

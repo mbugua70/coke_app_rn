@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import InputTwo from "./InputTwo";
 import FlatButton from "../UI/FlatButton";
@@ -47,7 +47,7 @@ const data = {
   ],
 };
 
-const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting }) => {
+const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, resetForm}) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredPhone, setEnteredPhone] = useState("");
   const [enteredReason, setEnteredReason] = useState("");
@@ -112,6 +112,8 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting }
     }
   }
 
+
+
   function takeLocationHandler(pickedlocation) {
     console.log("the pickedloc 2");
     setLocation(pickedlocation);
@@ -136,6 +138,22 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting }
       long: location.long,
     });
   }
+
+  useEffect(() => {
+    setEnteredAge("")
+    setEnteredBeverage("");
+    setEnteredFeedback(""),
+    setEnteredFrequency(""),
+    setEnteredName("");
+    setEnteredPhone("");
+    setEnteredPricing("");
+    setEnteredPurchase("");
+    setEnteredReason("");
+    setEnteredSku("");
+    setEnteredSoda("");
+    setEnteredVariant("");
+   }, [resetForm])
+
 
   return (
     <KeyboardAvoidingView
@@ -236,7 +254,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting }
           />
 
           {/* location functionality */}
-          <LocationPicker onLocationHandler={takeLocationHandler} />
+          <LocationPicker onLocationHandler={takeLocationHandler} resetForm={resetForm} />
 
           {/* button content */}
           <View style={styles.submitContainer}>

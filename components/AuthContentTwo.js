@@ -4,13 +4,13 @@ import { useNavigation } from "@react-navigation/native";
 import { SummaryForm } from "../http/api";
 // import { Colors } from '../../constants/styles';
 
-
-import Toast from 'react-native-toast-message';
+import Toast from "react-native-toast-message";
 import FormContainerTwo from "./FormContainerTwo";
 
 function AuthContentTwo({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
   const [isSubmiting, setIsSubmitting] = useState(false);
+  const [resetForm, setResetForm] = useState(false);
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     name: false,
     phone: false,
@@ -70,7 +70,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
 
     try {
       // Submit the form data
-      setIsSubmitting(true)
+      setIsSubmitting(true);
       const response = await SummaryForm(
         name,
         phone,
@@ -88,23 +88,24 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         long
       );
 
-      setIsSubmitting(false)
+      setIsSubmitting(false);
       console.log("API Response:", response);
 
       // Optionally, show success feedback to the user
       // adding user UI  alert message for successful data upload
       Toast.show({
-        type: 'success',
-        text1: 'Success',
-        text2: 'Data submitted successfully!'
+        type: "success",
+        text1: "Success",
+        text2: "Data submitted successfully!",
       });
+      setResetForm((prev) => !prev)
     } catch (error) {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
       console.error("Error submitting form:", error);
       Toast.show({
-        type: 'error',
-        text1: 'Submission failed',
-        text2:  error.message || "An unknown error occurred."
+        type: "error",
+        text1: "Submission failed",
+        text2: error.message || "An unknown error occurred.",
       });
       // Alert.alert(
       //   "Submission failed",
@@ -113,11 +114,11 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     }
   }
 
-
   return (
     <View style={styles.authContent}>
       <FormContainerTwo
-        isSubmiting= {isSubmiting}
+        resetForm={resetForm}
+        isSubmiting={isSubmiting}
         isLogin={isLogin}
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
