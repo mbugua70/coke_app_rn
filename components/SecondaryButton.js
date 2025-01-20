@@ -5,9 +5,9 @@ import { GlobalStyles } from '../Constants/Globalcolors';
 
 
 
-const SecondaryButton = ({onPress,children, icon}) => {
+const SecondaryButton = ({onPress,children, icon, isFetchingLocation}) => {
   return (
-       <Pressable style={({pressed})=> pressed ? [styles.buttons, styles.pressed] : styles.buttons} onPress={onPress}>
+       <Pressable disabled={isFetchingLocation} style={({pressed})=> pressed ? [styles.buttons, styles.pressed] : styles.buttons} onPress={onPress}>
           <Ionicons style={styles.icon} name={icon} size={18} color={GlobalStyles.colors.primary800} />
           <Text style={styles.buttonText}>{children}</Text>
        </Pressable>

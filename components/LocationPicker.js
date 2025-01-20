@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Image} from 'react-native'
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import React, { useState, useEffect} from 'react'
 import * as Location from 'expo-location';
 
@@ -93,6 +94,10 @@ const LocationPicker = ({onLocationHandler}) => {
 
       let content = <Text style={styles.text}>You have no location picked yet</Text>
 
+      if(isFetchingLocation){
+        content =  <ActivityIndicator animating={true} color={MD2Colors.lightBlueA700} size="small"/>
+      }
+
       if(pickedLocation){
         const locationUrl =  getGoogleMapPreview(pickedLocation.lat, pickedLocation.long);
         if(locationUrl){
@@ -110,7 +115,7 @@ const LocationPicker = ({onLocationHandler}) => {
       </View>
       <View style={styles.buttonHolder}>
          <View style={styles.buttoncontainer}>
-         <SecondaryButton icon="location" onPress={handleGetLocation}>Locate User</SecondaryButton>
+         <SecondaryButton isFetchingLocation={isFetchingLocation} icon="location" onPress={handleGetLocation}>Locate User</SecondaryButton>
          </View>
       </View>
     </View>
