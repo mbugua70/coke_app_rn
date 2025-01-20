@@ -44,7 +44,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     const phoneRegex = /^[0-9]{7,15}$/;
     const phoneIsValid = phoneRegex.test(phone);
     const ageIsValid = age.length > 2;
-    const sodaIsValid = soda.length > 2;
+    const sodaIsValid = soda.length > 1;
     const beverageIsValid = beverage.length > 2;
 
     if (
@@ -62,29 +62,41 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         beverage: !beverageIsValid,
         phone: !phoneIsValid,
       });
-
       return;
     }
-    // this will be function to submit our data to the backend
-    const response = await SummaryForm(
-      name,
-      phone,
-      age,
-      soda,
-      beverage,
-      reason,
-      frequency,
-      purchase,
-      variant,
-      sku,
-      pricing,
-      feedback,
-      lat,
-      long
-    );
 
-    console.log(response);
+    try {
+      // Submit the form data
+      const response = await SummaryForm(
+        name,
+        phone,
+        age,
+        soda,
+        beverage,
+        reason,
+        frequency,
+        purchase,
+        variant,
+        sku,
+        pricing,
+        feedback,
+        lat,
+        long
+      );
+
+      console.log("API Response:", response);
+
+      // Optionally, show success feedback to the user
+      Alert.alert("Success", "Data submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      Alert.alert(
+        "Submission failed",
+        error.message || "An unknown error occurred."
+      );
+    }
   }
+
 
   return (
     <View style={styles.authContent}>

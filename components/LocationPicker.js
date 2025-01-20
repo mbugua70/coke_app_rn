@@ -89,11 +89,12 @@ const LocationPicker = ({onLocationHandler}) => {
    React.useEffect(() => {
 
       }, [isFetchingLocation]);
+
+
       let content = <Text style={styles.text}>You have no location picked yet</Text>
 
       if(pickedLocation){
         const locationUrl =  getGoogleMapPreview(pickedLocation.lat, pickedLocation.long);
-        onLocationHandler(pickedLocation);
         if(locationUrl){
           content =  <Image style={styles.image} source={{uri:locationUrl}}/>
         }else{
