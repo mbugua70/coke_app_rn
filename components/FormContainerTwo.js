@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 
@@ -46,7 +47,7 @@ const data = {
   ],
 };
 
-const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid }) => {
+const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting }) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredPhone, setEnteredPhone] = useState("");
   const [enteredReason, setEnteredReason] = useState("");
@@ -239,7 +240,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid }) => {
 
           {/* button content */}
           <View style={styles.submitContainer}>
-            <FlatButton onPress={submitHandler}>SUBMIT</FlatButton>
+            <FlatButton isSubmiting={isSubmiting} onPress={submitHandler}>{isSubmiting ? <ActivityIndicator animating={true} color={MD2Colors.lightBlueA700} /> : "SUBMIT"}</FlatButton>
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>

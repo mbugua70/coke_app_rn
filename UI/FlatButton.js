@@ -2,12 +2,12 @@ import {StyleSheet, Text, View, Pressable} from "react-native";
 import React, { Children, useState } from "react";
 
 
-const FlatButton = ({children, onPress}) => {
+const FlatButton = ({children, onPress, isSubmiting}) => {
     const [isPressed, setIspressed] = useState(false);
 
     return(
       <View style={styles.screen}>
-         <Pressable onPress={onPress} style={({pressed}) => [styles.button, pressed && styles.pressed]}>
+         <Pressable disabled={isSubmiting} onPress={onPress} style={({pressed}) => [styles.button, pressed && styles.pressed]}>
              <Text style={styles.textButton}>{children}</Text>
          </Pressable>
       </View>

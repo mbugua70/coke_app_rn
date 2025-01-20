@@ -8,6 +8,7 @@ import { SummaryForm } from "../http/api";
 
 function AuthContentTwo({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
+  const [isSubmiting, setIsSubmitting] = useState(false);
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     name: false,
     phone: false,
@@ -67,6 +68,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
 
     try {
       // Submit the form data
+      setIsSubmitting(true)
       const response = await SummaryForm(
         name,
         phone,
@@ -84,11 +86,14 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         long
       );
 
+      setIsSubmitting(false)
       console.log("API Response:", response);
 
       // Optionally, show success feedback to the user
+      // adding user UI  alert message for successful data upload
       Alert.alert("Success", "Data submitted successfully!");
     } catch (error) {
+      setIsSubmitting(false)
       console.error("Error submitting form:", error);
       Alert.alert(
         "Submission failed",
@@ -101,6 +106,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
   return (
     <View style={styles.authContent}>
       <FormContainerTwo
+        isSubmiting= {isSubmiting}
         isLogin={isLogin}
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
