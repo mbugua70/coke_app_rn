@@ -64,10 +64,10 @@ const Profile = () => {
        </View>
        {/* edit profile */}
        <View style={styles.screen2}>
-          <ProfileIconUI name="person" size="24" color={GlobalStyles.colors.primary800} onPress={editHandler} text="Edit profile" bg="#fff"/>
+          <ProfileIconUI name="person" size={24} color={GlobalStyles.colors.primary800} onPress={editHandler} text="Edit profile" bg="#fff"/>
 
           {/* signout */}
-          <ProfileIconUI name="log-out" size="24" color={GlobalStyles.colors.gray800} onPress={signoutHandler} text="Sign Out" bg="#fff"/>
+          <ProfileIconUI name="log-out" size={24} color={GlobalStyles.colors.gray800} onPress={signoutHandler} text="Sign Out" bg="#fff"/>
        </View>
     </View>
   )

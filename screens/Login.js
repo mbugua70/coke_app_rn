@@ -6,6 +6,7 @@ import { View, Text, StyleSheet} from 'react-native'
 import { AuthContext } from '../store/store'
 import AuthContent from "../components/AuthContent"
 import CocaColaTitle from "../UI/CokeHead"
+import HeadComp from '../components/HeadComp';
 
 const Login = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -70,7 +71,7 @@ useEffect(() => {
   return (
     <View style={styles.screen}>
          <View style={styles.cokeHeadStyle}>
-           <CocaColaTitle size="40"/>
+            <HeadComp />
          </View>
 
          <AuthContent isLogin isAuthenticate={isAuthenticate} onAuthenticate={loginHandler} isUpdating={false}/>
@@ -89,8 +90,9 @@ const styles = StyleSheet.create({
 
   cokeHeadStyle: {
     marginTop: 62,
-    marginHorizontal: 16,
-    padding: 16,
+    paddingVertical: 16,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 
 })

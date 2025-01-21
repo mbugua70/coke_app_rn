@@ -68,12 +68,12 @@ function AuthenticatedStack() {
           contentStyle: {
             backgroundColor: GlobalStyles.colors.primary50,
           },
-          headerTitle: () => <CocaColaTitle size='30' />,
+          headerTitle: () => <CocaColaTitle size={30} />,
           headerRight: ({ headerTintColor }) => {
             return (
               <IconButton
                 color={GlobalStyles.colors.primary800}
-                size='24'
+                size={24}
                 name='person'
               />
             );
@@ -94,7 +94,7 @@ function AuthenticatedStack() {
             return (
               <IconButton
                 color={GlobalStyles.colors.primary800}
-                size='24'
+                size={24}
                 name='person'
               />
             );
