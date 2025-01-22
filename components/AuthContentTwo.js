@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, StyleSheet, View, Platform} from "react-native";
+import { Alert, StyleSheet, View, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SummaryForm } from "../http/api";
 // import { Colors } from '../../constants/styles';
@@ -17,6 +17,14 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     age: false,
     soda: false,
     beverage: false,
+    reason: false,
+    frequency: false,
+    purchase: false,
+    variant: false,
+    sku: false,
+    pricing: false,
+    feedback: false,
+    purchase: false,
   });
 
   async function submitHandler(credentials) {
@@ -42,6 +50,12 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     age = age.trim();
     soda = soda.trim();
     beverage = beverage.trim();
+    reason = reason.trim();
+    frequency = frequency.trim();
+    variant = variant.trim();
+    sku = sku.trim();
+    feedback = feedback.trim();
+    purchase = purchase.trim();
 
     const nameIsValid = name.length > 2;
     const phoneRegex = /^[0-9]{7,15}$/;
@@ -49,13 +63,27 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     const ageIsValid = age.length > 2;
     const sodaIsValid = soda.length > 1;
     const beverageIsValid = beverage.length > 2;
+    const reasonIsValid = reason.length > 2;
+    const frequencyIsValid = frequency.length > 2;
+    const variantIsValid = variant.length > 2;
+    const skuIsValid = sku.length > 2;
+    const feedbackIsvalid = feedback.length > 2;
+    const pricingIsValid = pricing.length > 2;
+    const purchaseIsValid = purchase.length > 2;
 
     if (
       !beverageIsValid ||
       !sodaIsValid ||
       !ageIsValid ||
       !nameIsValid ||
-      !phoneIsValid
+      !phoneIsValid ||
+      !reasonIsValid ||
+      !frequencyIsValid ||
+      !variantIsValid ||
+      !skuIsValid ||
+      !feedbackIsvalid ||
+      !pricingIsValid ||
+      !purchaseIsValid
     ) {
       Alert.alert("Invalid input", "Please check your input values.");
       setCredentialsInvalid({
@@ -64,6 +92,13 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         age: !ageIsValid,
         beverage: !beverageIsValid,
         phone: !phoneIsValid,
+        reason: !reasonIsValid,
+        frequency: !frequencyIsValid,
+        variant: !variantIsValid,
+        sku: !skuIsValid,
+        pricing: !pricingIsValid,
+        feedback: !feedbackIsvalid,
+        purchase: !purchaseIsValid
       });
       return;
     }
@@ -90,7 +125,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
 
       setIsSubmitting(false);
 
-
       // Optionally, show success feedback to the user
       // adding user UI  alert message for successful data upload
       Toast.show({
@@ -98,7 +132,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         text1: "Success",
         text2: "Data submitted successfully!",
       });
-      setResetForm((prev) => !prev)
+      setResetForm((prev) => !prev);
     } catch (error) {
       setIsSubmitting(false);
       console.error("Error submitting form:", error);
@@ -136,7 +170,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     marginHorizontal: 10,
     paddingHorizontal: 20,
-    paddingBottom: Platform.select({ ios: 20, android: 70})
+    paddingBottom: Platform.select({ ios: 20, android: 70 }),
     // backgroundColor: Colors.primary800,
   },
 });

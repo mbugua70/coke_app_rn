@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState, useRef } from "react";
 
@@ -47,7 +47,13 @@ const data = {
   ],
 };
 
-const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, resetForm}) => {
+const FormContainerTwo = ({
+  isLogin,
+  onSubmit,
+  credentialsInvalid,
+  isSubmiting,
+  resetForm,
+}) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredPhone, setEnteredPhone] = useState("");
   const [enteredReason, setEnteredReason] = useState("");
@@ -77,14 +83,19 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
   const inputRef11 = useRef(null);
   const inputRef12 = useRef(null);
 
-
-
   const {
     name: nameIsValid,
     phone: phoneIsInvalid,
     beverage: beverageIsInvalid,
     age: ageIsInvalid,
     soda: sodaIsInvalid,
+    reason: reasonIsInValid,
+    frequency: frequencyIsInValid,
+    variant: variantIsInValid,
+    sku: skuIsInValid,
+    pricing: pricingIsInValid,
+    feedback: feedbackIsInvalid,
+    purchase: purchaseIsInValid,
   } = credentialsInvalid;
 
   function updateInputValueHandler(inputType, enteredValue) {
@@ -128,8 +139,6 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
     }
   }
 
-
-
   function takeLocationHandler(pickedlocation) {
     console.log("the pickedloc 2");
     setLocation(pickedlocation);
@@ -156,11 +165,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
   }
 
   useEffect(() => {
-    setEnteredAge("")
+    setEnteredAge("");
     setEnteredBeverage("");
-    setEnteredFeedback(""),
-    setEnteredFrequency(""),
-    setEnteredName("");
+    setEnteredFeedback(""), setEnteredFrequency(""), setEnteredName("");
     setEnteredPhone("");
     setEnteredPricing("");
     setEnteredPurchase("");
@@ -168,8 +175,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
     setEnteredSku("");
     setEnteredSoda("");
     setEnteredVariant("");
-   }, [resetForm])
-
+  }, [resetForm]);
 
   return (
     <KeyboardAvoidingView
@@ -198,7 +204,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             value={enteredPhone}
             isInvalid={phoneIsInvalid}
             placeholder='Enter phone number'
-            keyboardType="numeric"
+            keyboardType='numeric'
             onSubmitEditing={() => inputRef3.current?.focus()}
             blurOnSubmit={false}
             returnKeyType='next'
@@ -244,6 +250,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
 
           <InputTwo
             label='Reasons'
+            isInvalid = {reasonIsInValid}
             onUpdateValue={updateInputValueHandler.bind(this, "reason")}
             value={enteredReason}
             placeholder='Enter reasons'
@@ -255,6 +262,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
 
           {/* frequency */}
           <DropdownComponent
+            isInvalid ={frequencyIsInValid}
             label='Frequency'
             data={data.frequency}
             value={enteredFrequency}
@@ -266,6 +274,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
           />
 
           <InputTwo
+            isInvalid={purchaseIsInValid}
             label='Point of purchase'
             onUpdateValue={updateInputValueHandler.bind(this, "purchase")}
             value={enteredPurchase}
@@ -277,6 +286,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
           />
 
           <InputTwo
+            isInvalid={variantIsInValid}
             label='Variant'
             onUpdateValue={updateInputValueHandler.bind(this, "variant")}
             value={enteredVariant}
@@ -289,6 +299,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
 
           {/* SKU */}
           <DropdownComponent
+            isInvalid={skuIsInValid}
             label='SKU'
             data={data.sku}
             value={enteredSku}
@@ -296,10 +307,11 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             ref={inputRef10}
             onSubmitEditing={() => inputRef11.current?.focus()}
             blurOnSubmit={false}
-            returnKeyType="next"
+            returnKeyType='next'
           />
 
           <InputTwo
+            isInvalid={pricingIsInValid}
             label='Pricing'
             onUpdateValue={updateInputValueHandler.bind(this, "pricing")}
             value={enteredPricing}
@@ -307,10 +319,11 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             ref={inputRef11}
             onSubmitEditing={() => inputRef12.current?.focus()}
             blurOnSubmit={false}
-            returnKeyType="next"
+            returnKeyType='next'
           />
 
           <InputTwo
+            isInvalid={feedbackIsInvalid}
             label='Feedback'
             onUpdateValue={updateInputValueHandler.bind(this, "feedback")}
             value={enteredFeedback}
@@ -318,15 +331,28 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             ref={inputRef12}
             onSubmitEditing={() => inputRef12.current?.focus()}
             blurOnSubmit={false}
-            returnKeyType="next"
+            returnKeyType='next'
           />
 
           {/* location functionality */}
-          <LocationPicker onLocationHandler={takeLocationHandler} resetForm={resetForm} />
+          <LocationPicker
+            onLocationHandler={takeLocationHandler}
+            resetForm={resetForm}
+          />
 
           {/* button content */}
           <View style={styles.submitContainer}>
-            {isSubmiting ? <ActivityIndicator animating={true} color={MD2Colors.lightBlueA700} size="small"/> :  <FlatButton isSubmiting={isSubmiting} onPress={submitHandler}>SUBMIT</FlatButton>}
+            {isSubmiting ? (
+              <ActivityIndicator
+                animating={true}
+                color={MD2Colors.lightBlueA700}
+                size='small'
+              />
+            ) : (
+              <FlatButton isSubmiting={isSubmiting} onPress={submitHandler}>
+                SUBMIT
+              </FlatButton>
+            )}
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
