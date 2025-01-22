@@ -1,34 +1,43 @@
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import { GlobalStyles } from '../Constants/Globalcolors';
+import { View, Text, TextInput, StyleSheet, Platform } from "react-native";
+import { GlobalStyles } from "../Constants/Globalcolors";
+import { forwardRef } from "react";
 
-
-function InputTwo({
-  label,
-  keyboardType,
-  secure,
-  onUpdateValue,
-  value,
-  isInvalid,
-  placeholder
-}) {
+const InputTwo = forwardRef((
+  {
+    label,
+    keyboardType,
+    secure,
+    onUpdateValue,
+    value,
+    isInvalid,
+    placeholder,
+    onSubmitEditing,
+    blurOnSubmit
+  }, ref
+) => {
   return (
     <View style={styles.inputContainer}>
       <Text style={[styles.label, isInvalid && styles.labelInvalid]}>
         {label}
       </Text>
-      <TextInput
+     <TextInput
         style={[styles.input, isInvalid && styles.inputInvalid]}
         // autoCapitalize={false}
-        autoCapitalize="none"
+        autoCapitalize='none'
         keyboardType={keyboardType}
         secureTextEntry={secure}
         onChangeText={onUpdateValue}
         value={value}
         placeholder={placeholder}
+        returnKeyType='next'
+        ref={ref}
+        onSubmitEditing={onSubmitEditing}
+        blurOnSubmit={blurOnSubmit}
       />
+
     </View>
   );
-}
+});
 
 export default InputTwo;
 
@@ -37,7 +46,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   label: {
-    color: 'black',
+    color: "black",
     marginBottom: 4,
   },
   labelInvalid: {

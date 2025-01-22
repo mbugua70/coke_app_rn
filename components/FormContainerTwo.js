@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import InputTwo from "./InputTwo";
 import FlatButton from "../UI/FlatButton";
@@ -62,6 +62,22 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
   const [enteredSku, setEnteredSku] = useState("");
   const [location, setLocation] = useState("");
   const navigaton = useNavigation();
+
+  // userRefs for input fields to be used in the form
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+  const inputRef5 = useRef(null);
+  const inputRef6 = useRef(null);
+  const inputRef7 = useRef(null);
+  const inputRef8 = useRef(null);
+  const inputRef9 = useRef(null);
+  const inputRef10 = useRef(null);
+  const inputRef11 = useRef(null);
+  const inputRef12 = useRef(null);
+
+
 
   const {
     name: nameIsValid,
@@ -170,15 +186,22 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             value={enteredName}
             isInvalid={nameIsValid}
             placeholder='Enter name'
+            ref={inputRef1}
+            onSubmitEditing={() => inputRef1.current?.focus()}
+            blurOnSubmit={false}
+
           />
 
           <InputTwo
             label='Phone Number'
+            ref={inputRef2}
             onUpdateValue={updateInputValueHandler.bind(this, "phone")}
             value={enteredPhone}
             isInvalid={phoneIsInvalid}
             placeholder='Enter phone number'
             keyboardType="numeric"
+            onSubmitEditing={() => inputRef2.current?.focus()}
+            blurOnSubmit={false}
           />
 
           <DropdownComponent
@@ -187,6 +210,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             data={data.ageData}
             value={enteredAge}
             onUpdateValue={updateInputValueHandler.bind(this, "age")}
+            ref={inputRef3}
+            onSubmitEditing={() => inputRef3.current?.focus()}
+            blurOnSubmit={false}
           />
 
           {/* soda */}
@@ -196,6 +222,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             data={data.sodaData}
             value={enteredSoda}
             onUpdateValue={updateInputValueHandler.bind(this, "soda")}
+            ref={inputRef4}
+            onSubmitEditing={() => inputRef4.current?.focus()}
+            blurOnSubmit={false}
           />
 
           {/* beverage */}
@@ -205,6 +234,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             data={data.beverage}
             value={enteredBeverage}
             onUpdateValue={updateInputValueHandler.bind(this, "beverage")}
+            ref={inputRef5}
+            onSubmitEditing={() => inputRef5.current?.focus()}
+            blurOnSubmit={false}
           />
 
           <InputTwo
@@ -212,6 +244,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             onUpdateValue={updateInputValueHandler.bind(this, "reason")}
             value={enteredReason}
             placeholder='Enter reasons'
+            ref={inputRef6}
+            onSubmitEditing={() => inputRef6.current?.focus()}
+            blurOnSubmit={false}
           />
 
           {/* frequency */}
@@ -220,6 +255,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             data={data.frequency}
             value={enteredFrequency}
             onUpdateValue={updateInputValueHandler.bind(this, "frequency")}
+            ref={inputRef7}
+            onSubmitEditing={() => inputRef7.current?.focus()}
+            blurOnSubmit={false}
           />
 
           <InputTwo
@@ -227,6 +265,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             onUpdateValue={updateInputValueHandler.bind(this, "purchase")}
             value={enteredPurchase}
             placeholder='Enter point of purchase'
+            ref={inputRef8}
+            onSubmitEditing={() => inputRef8.current?.focus()}
+            blurOnSubmit={false}
           />
 
           <InputTwo
@@ -234,6 +275,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             onUpdateValue={updateInputValueHandler.bind(this, "variant")}
             value={enteredVariant}
             placeholder='Enter variant'
+            ref={inputRef9}
+            onSubmitEditing={() => inputRef9.current?.focus()}
+            blurOnSubmit={false}
           />
 
           {/* SKU */}
@@ -242,6 +286,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             data={data.sku}
             value={enteredSku}
             onUpdateValue={updateInputValueHandler.bind(this, "sku")}
+            ref={inputRef10}
+            onSubmitEditing={() => inputRef10.current?.focus()}
+            blurOnSubmit={false}
           />
 
           <InputTwo
@@ -249,6 +296,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             onUpdateValue={updateInputValueHandler.bind(this, "pricing")}
             value={enteredPricing}
             placeholder='Enter pricing'
+            ref={inputRef11}
+            onSubmitEditing={() => inputRef11.current?.focus()}
+            blurOnSubmit={false}
           />
 
           <InputTwo
@@ -256,6 +306,9 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             onUpdateValue={updateInputValueHandler.bind(this, "feedback")}
             value={enteredFeedback}
             placeholder='Enter feedback'
+            ref={inputRef12}
+            onSubmitEditing={() => inputRef12.current?.focus()}
+            blurOnSubmit={false}
           />
 
           {/* location functionality */}
