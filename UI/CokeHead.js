@@ -1,5 +1,5 @@
 import { useFonts } from 'expo-font';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Platform } from 'react-native';
 
 const CocaColaTitle = ({size}) => {
   const [fontsLoaded] = useFonts({
@@ -10,7 +10,7 @@ const CocaColaTitle = ({size}) => {
     return null; // Render nothing or a fallback UI until the font is loaded
   }
 
-  return <Text style={[styles.title, {fontSize: size}, {fontFamily: 'Coca-Cola',}]}>CocaCola</Text>;
+  return <Text style={[styles.title, {fontSize: size}, {fontFamily: 'Coca-Cola',}]}>{Platform.select({ios: 'C', android: "CocaCola"})}</Text>;
 };
 
 const styles = StyleSheet.create({

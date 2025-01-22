@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View, Platform} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SummaryForm } from "../http/api";
 // import { Colors } from '../../constants/styles';
@@ -89,7 +89,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
       );
 
       setIsSubmitting(false);
-      console.log("API Response:", response);
+
 
       // Optionally, show success feedback to the user
       // adding user UI  alert message for successful data upload
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     marginHorizontal: 10,
     paddingHorizontal: 20,
-
+    paddingBottom: Platform.select({ ios: 20, android: 70})
     // backgroundColor: Colors.primary800,
   },
 });

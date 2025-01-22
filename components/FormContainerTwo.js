@@ -185,6 +185,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             isInvalid={ageIsInvalid}
             label='Age'
             data={data.ageData}
+            value={enteredAge}
             onUpdateValue={updateInputValueHandler.bind(this, "age")}
           />
 
@@ -193,6 +194,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             isInvalid={sodaIsInvalid}
             label='Do you take soda'
             data={data.sodaData}
+            value={enteredSoda}
             onUpdateValue={updateInputValueHandler.bind(this, "soda")}
           />
 
@@ -201,6 +203,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
             isInvalid={beverageIsInvalid}
             label='Choice of beverage'
             data={data.beverage}
+            value={enteredBeverage}
             onUpdateValue={updateInputValueHandler.bind(this, "beverage")}
           />
 
@@ -215,6 +218,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
           <DropdownComponent
             label='Frequency'
             data={data.frequency}
+            value={enteredFrequency}
             onUpdateValue={updateInputValueHandler.bind(this, "frequency")}
           />
 
@@ -236,6 +240,7 @@ const FormContainerTwo = ({ isLogin, onSubmit, credentialsInvalid, isSubmiting, 
           <DropdownComponent
             label='SKU'
             data={data.sku}
+            value={enteredSku}
             onUpdateValue={updateInputValueHandler.bind(this, "sku")}
           />
 

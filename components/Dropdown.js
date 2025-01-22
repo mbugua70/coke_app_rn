@@ -8,8 +8,8 @@ import React, { useState } from 'react';
 
 
 
-  const DropdownComponent = ({ data, label, isInvalid, onUpdateValue}) => {
-    const [value, setValue] = useState(null);
+  const DropdownComponent = ({ data, label, isInvalid, onUpdateValue, value}) => {
+    // const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
 
@@ -33,7 +33,7 @@ import React, { useState } from 'react';
           onBlur={() => setIsFocus(false)}
           onChange={item => {
             onUpdateValue(item.value);
-            setValue(item.value);
+            // setValue(item.value);
             setIsFocus(false);
           }}
         />
