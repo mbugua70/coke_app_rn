@@ -56,6 +56,7 @@ const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, pho
         headerRight: () => {
           return (
             <Pressable
+              hitSlop={20}
               onPress={submitHandler}
               style={({ pressed }) =>
                 pressed ? [styles.button, styles.pressed] : styles.button

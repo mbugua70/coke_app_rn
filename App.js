@@ -26,11 +26,6 @@ const Stack = createNativeStackNavigator();
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
-// Set the animation options. This is optional.
-SplashScreen.setOptions({
-  duration: 1000,
-  fade: true,
-});
 
 function AuthStack() {
   return (
@@ -146,7 +141,7 @@ function Navigation() {
 
 function TokenHolder() {
   const authctx = useContext(AuthContext);
-  const [isAppReady, setIsAppReady] = useState(true);
+  const [isAppReady, setIsAppReady] = useState(false);
   useEffect(() => {
     async function fetchingToken() {
       const token = await AsyncStorage.getItem("token");
@@ -154,15 +149,23 @@ function TokenHolder() {
       if (token) {
         authctx.authenticate(token);
       }
-      setIsAppReady(false);
+      setIsAppReady(true);
     }
 
     fetchingToken();
   }, []);
 
+
+
   if (isAppReady) {
     SplashScreen.hide();
   }
+
+
+  if(!isAppReady){
+    return null
+  }
+
 
   return <Navigation />;
 }

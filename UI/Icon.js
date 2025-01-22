@@ -11,7 +11,7 @@ const IconButton = ({name, size, color}) => {
     return(
         <>
          <View style={styles.icon}>
-          <Pressable onPress={handlePressHandler} style={({pressed}) => pressed ? [styles.pressed, styles.button]: styles.button}>
+          <Pressable hitSlop={20} onPress={handlePressHandler} style={({pressed}) => pressed ? [styles.pressed, styles.button]: styles.button}>
              <Ionicons name={name} size={size} color={color} />
           </Pressable>
         </View>

@@ -12,7 +12,8 @@ const InputTwo = forwardRef((
     isInvalid,
     placeholder,
     onSubmitEditing,
-    blurOnSubmit
+    blurOnSubmit,
+    returnKeyType
   }, ref
 ) => {
   return (
@@ -29,7 +30,7 @@ const InputTwo = forwardRef((
         onChangeText={onUpdateValue}
         value={value}
         placeholder={placeholder}
-        returnKeyType='next'
+        returnKeyType={returnKeyType}
         ref={ref}
         onSubmitEditing={onSubmitEditing}
         blurOnSubmit={blurOnSubmit}

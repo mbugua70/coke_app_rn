@@ -7,7 +7,7 @@ const FlatButton = ({children, onPress, isSubmiting}) => {
 
     return(
       <View style={styles.screen}>
-         <Pressable disabled={isSubmiting} onPress={onPress} style={({pressed}) => [styles.button, pressed && styles.pressed]}>
+         <Pressable disabled={isSubmiting} onPress={onPress} style={({pressed}) => [styles.button, pressed && styles.pressed]} hitSlop={20}>
              <Text style={styles.textButton}>{children}</Text>
          </Pressable>
       </View>

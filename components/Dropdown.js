@@ -11,7 +11,8 @@ const DropdownComponent = forwardRef(({
   onUpdateValue,
   value,
   onSubmitEditing,
-  blurOnSubmit
+  blurOnSubmit,
+  returnKeyType
 }, ref) => {
   const [isFocus, setIsFocus] = useState(false);
 
@@ -44,6 +45,7 @@ const DropdownComponent = forwardRef(({
         ref={ref}
         onSubmitEditing={onSubmitEditing}
         blurOnSubmit={blurOnSubmit}
+        returnKeyType={returnKeyType}
       />
     </View>
   );

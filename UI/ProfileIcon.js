@@ -6,7 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 const ProfileIconUI = ({onPress, color, name, size, text, bg}) => {
   return (
     <View style={styles.screen}>
-      <Pressable onPress={onPress} style={({pressed}) => [{...styles.button}, pressed && styles.pressed]}>
+      <Pressable hitSlop={20} onPress={onPress} style={({pressed}) => [{...styles.button}, pressed && styles.pressed]}>
           <View style={styles.textIcon}>
           <View style={[styles.icon, {backgroundColor: bg}]}>
          <Ionicons name={name} size={size} color={color} />
