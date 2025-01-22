@@ -105,6 +105,24 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
 
     try {
       // Submit the form data
+
+
+      setCredentialsInvalid({
+        name: !nameIsValid,
+        soda: !sodaIsValid,
+        age: !ageIsValid,
+        beverage: !beverageIsValid,
+        phone: !phoneIsValid,
+        reason: !reasonIsValid,
+        frequency: !frequencyIsValid,
+        variant: !variantIsValid,
+        sku: !skuIsValid,
+        pricing: !pricingIsValid,
+        feedback: !feedbackIsvalid,
+        purchase: !purchaseIsValid
+      });
+
+
       setIsSubmitting(true);
       const response = await SummaryForm(
         name,
@@ -123,6 +141,8 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         long
       );
 
+
+      // resetting the validation check
       setIsSubmitting(false);
 
       // Optionally, show success feedback to the user

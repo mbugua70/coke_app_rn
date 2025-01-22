@@ -31,9 +31,15 @@
     },
     "plugins": [
       [
-        "expo-location",
+       "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "Allow device app to use your location."
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/cocacola.ttf"]
         }
       ]
     ],

@@ -58,6 +58,7 @@ function AuthContent({  onAuthenticate, name, phone, region, isAuthenticate, isU
 export default AuthContent;
 
 const styles = StyleSheet.create({
+
   authContent: {
     marginHorizontal: 16,
     padding: 16,

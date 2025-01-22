@@ -98,6 +98,8 @@ const FormContainerTwo = ({
     purchase: purchaseIsInValid,
   } = credentialsInvalid;
 
+  console.log(nameIsValid, phoneIsInvalid, beverageIsInvalid, ageIsInvalid, sodaIsInvalid, reasonIsInValid, frequencyIsInValid, variantIsInValid, skuIsInValid, pricingIsInValid, feedbackIsInvalid, purchaseIsInValid)
+
   function updateInputValueHandler(inputType, enteredValue) {
     switch (inputType) {
       case "name":
@@ -205,9 +207,6 @@ const FormContainerTwo = ({
             isInvalid={phoneIsInvalid}
             placeholder='Enter phone number'
             keyboardType='numeric'
-            onSubmitEditing={() => inputRef3.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
           />
 
           <DropdownComponent
@@ -217,9 +216,6 @@ const FormContainerTwo = ({
             value={enteredAge}
             onUpdateValue={updateInputValueHandler.bind(this, "age")}
             ref={inputRef3}
-            onSubmitEditing={() => inputRef4.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
           />
 
           {/* soda */}
@@ -230,9 +226,6 @@ const FormContainerTwo = ({
             value={enteredSoda}
             onUpdateValue={updateInputValueHandler.bind(this, "soda")}
             ref={inputRef4}
-            onSubmitEditing={() => inputRef5.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
           />
 
           {/* beverage */}
@@ -243,9 +236,6 @@ const FormContainerTwo = ({
             value={enteredBeverage}
             onUpdateValue={updateInputValueHandler.bind(this, "beverage")}
             ref={inputRef5}
-            onSubmitEditing={() => inputRef6.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
           />
 
           <InputTwo
@@ -255,9 +245,6 @@ const FormContainerTwo = ({
             value={enteredReason}
             placeholder='Enter reasons'
             ref={inputRef6}
-            onSubmitEditing={() => inputRef7.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
           />
 
           {/* frequency */}
@@ -268,9 +255,6 @@ const FormContainerTwo = ({
             value={enteredFrequency}
             onUpdateValue={updateInputValueHandler.bind(this, "frequency")}
             ref={inputRef7}
-            onSubmitEditing={() => inputRef8.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
           />
 
           <InputTwo
@@ -292,9 +276,6 @@ const FormContainerTwo = ({
             value={enteredVariant}
             placeholder='Enter variant'
             ref={inputRef9}
-            onSubmitEditing={() => inputRef10.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
           />
 
           {/* SKU */}
@@ -305,9 +286,6 @@ const FormContainerTwo = ({
             value={enteredSku}
             onUpdateValue={updateInputValueHandler.bind(this, "sku")}
             ref={inputRef10}
-            onSubmitEditing={() => inputRef11.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
           />
 
           <InputTwo
@@ -329,9 +307,7 @@ const FormContainerTwo = ({
             value={enteredFeedback}
             placeholder='Enter feedback'
             ref={inputRef12}
-            onSubmitEditing={() => inputRef12.current?.focus()}
-            blurOnSubmit={false}
-            returnKeyType='next'
+            returnKeyType='done'
           />
 
           {/* location functionality */}
