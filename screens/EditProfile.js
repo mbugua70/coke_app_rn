@@ -58,7 +58,7 @@ const EditProfile = ({ route }) => {
   }, [error, isAuthenticated]);
 
   return (
-    <View>
+    <View style={styles.screen}>
       {/* title update profile */}
       <View style={styles.textContainer}>
         <Text style={styles.textHeader}>Update Profile</Text>
@@ -79,6 +79,9 @@ const EditProfile = ({ route }) => {
 export default EditProfile;
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   textContainer: {
     marginHorizontal: 16,
     padding: 16,

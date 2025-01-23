@@ -10,7 +10,7 @@ const CocaColaTitle = ({size}) => {
     return null; // Render nothing or a fallback UI until the font is loaded
   }
 
-  return <Text style={[styles.title, {fontSize: size}, {fontFamily: 'Coca-Cola',}]}>{Platform.select({ios: 'C', android: "CocaCola"})}</Text>;
+  return <Text style={[styles.title, {fontSize: size}, {fontFamily: 'cocacola',}]}>{Platform.select({ios: 'C', android: "CocaCola"})}</Text>;
 };
 
 const styles = StyleSheet.create({

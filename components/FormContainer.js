@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, Pressable} from 'react-native';
+import { View, Text, StyleSheet, Pressable, KeyboardAvoidingView,TouchableWithoutFeedback, ScrollView, Keyboard} from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import React, {useState, useLayoutEffect} from 'react';
 
 import Input from "./Input";
 import FlatButton from "../UI/FlatButton";
+import { GlobalStyles } from '../Constants/Globalcolors';
 
 
 const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, phone, region, isUpdating}) => {
@@ -70,8 +71,14 @@ const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, pho
 
 
   return (
-    <View>
-       <View>
+
+     <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior='padding'
+          keyboardVerticalOffset={100}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+       <ScrollView contentContainerStyle={styles.container}
+          keyboardShouldPersistTaps='handled'>
 
        <Input
           label="Name"
@@ -106,15 +113,20 @@ const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, pho
             Register
          </FlatButton>}
         </View>
-
-       </View>
-    </View>
+    </ScrollView>
+    </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   )
 }
 
 export default FormContainer
 
 const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 0,
+    paddingTop: 20,
+    flexGrow: 1,
+  },
 
   submitContainer: {
     marginTop: 20,
@@ -124,9 +136,16 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   button: {
-    padding: 6,
+    margin: 2,
+    width: 50,
+    height: 50,
+    padding: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   pressed: {
+    backgroundColor: GlobalStyles.colors.primary50,
+    borderRadius: 25,
     opacity: 0.75,
   },
 
