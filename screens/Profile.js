@@ -24,7 +24,7 @@ const Profile = () => {
     const [region, setRegion] = useState("");
     const navigation = useNavigation()
     const isFocused = useIsFocused();
-    console.log("is focused",isFocused);
+
 
     // fetching user name from storage
     useEffect(() => {

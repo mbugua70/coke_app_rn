@@ -72,3 +72,28 @@ export async function SummaryForm(
     };
   }
 }
+
+
+export async function fetchRecordData(phone) {
+  const place = "COKE"
+
+     try{
+         const response = await fetch(`https://iguru.co.ke/coke/api/REPORT.php/`, {
+             method:"POST",
+             headers:{
+                 'Content-Type':'application/json',
+               },
+               body: JSON.stringify(phone)
+         });
+
+         if(!response.ok){
+             throw new Error("Failed to fetch package data");
+         }
+         const data = await response.text();
+         console.log("Response text", data);
+         return  data;
+     }catch(error){
+         console.error('Error fetching package data:',error);
+         return error;
+     }
+ }

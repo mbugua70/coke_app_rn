@@ -2,6 +2,7 @@ import { View, Text, StatusBar, StyleSheet } from 'react-native'
 import React from 'react'
 
 import CategoryItem from "../components/CategoryItem"
+import OfflineComp from '../components/OfflineComp';
 
 const Home = ({navigation}) => {
 
@@ -18,6 +19,7 @@ const Home = ({navigation}) => {
      <StatusBar hidden={true}/>
 
       <View style={styles.screen}>
+        <OfflineComp />
        <CategoryItem color="#49393a" title="REPORT" onNavigate={handleNavigation}/>
        {/* <CategoryItem color="#49393a" title="RECORD" onNavigate={handleNavigationRecord}/> */}
       </View>

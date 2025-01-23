@@ -36,7 +36,6 @@ const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, pho
     }
 
     function submitHandler() {
-      console.log("text",enteredName, enteredPhone, enteredRegion)
       onSubmit({
         name: enteredName,
         phone: enteredPhone,
@@ -99,7 +98,7 @@ const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, pho
 
 
           <Input
-          label="Password"
+          label="Region"
           onUpdateValue={updateInputValueHandler.bind(this, 'region')}
           value={enteredRegion}
           isInvalid={regionIsInvalid}
