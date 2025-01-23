@@ -33,8 +33,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
       phone,
       age,
       soda,
-      beverage,
-      reason,
       frequency,
       purchase,
       variant,
@@ -49,8 +47,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     name = name.trim();
     age = age.trim();
     soda = soda.trim();
-    beverage = beverage.trim();
-    reason = reason.trim();
     frequency = frequency.trim();
     variant = variant.trim();
     sku = sku.trim();
@@ -62,8 +58,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     const phoneIsValid = phoneRegex.test(phone);
     const ageIsValid = age.length > 2;
     const sodaIsValid = soda.length > 1;
-    const beverageIsValid = beverage.length > 2;
-    const reasonIsValid = reason.length > 2;
     const frequencyIsValid = frequency.length > 2;
     const variantIsValid = variant.length > 2;
     const skuIsValid = sku.length > 2;
@@ -72,12 +66,10 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     const purchaseIsValid = purchase.length > 2;
 
     if (
-      !beverageIsValid ||
       !sodaIsValid ||
       !ageIsValid ||
       !nameIsValid ||
       !phoneIsValid ||
-      !reasonIsValid ||
       !frequencyIsValid ||
       !variantIsValid ||
       !skuIsValid ||
@@ -90,9 +82,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         name: !nameIsValid,
         soda: !sodaIsValid,
         age: !ageIsValid,
-        beverage: !beverageIsValid,
         phone: !phoneIsValid,
-        reason: !reasonIsValid,
         frequency: !frequencyIsValid,
         variant: !variantIsValid,
         sku: !skuIsValid,
@@ -111,9 +101,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         name: !nameIsValid,
         soda: !sodaIsValid,
         age: !ageIsValid,
-        beverage: !beverageIsValid,
         phone: !phoneIsValid,
-        reason: !reasonIsValid,
         frequency: !frequencyIsValid,
         variant: !variantIsValid,
         sku: !skuIsValid,
@@ -129,8 +117,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         phone,
         age,
         soda,
-        beverage,
-        reason,
         frequency,
         purchase,
         variant,

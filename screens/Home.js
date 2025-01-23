@@ -9,14 +9,28 @@ const Home = ({navigation}) => {
     navigation.navigate("Report");
     }
 
+    function handleNavigationRecord(){
+      navigation.navigate("Record")
+    }
+
   return (
    <>
      <StatusBar hidden={true}/>
 
-       <CategoryItem onNavigate={handleNavigation}/>
+      <View style={styles.screen}>
+       <CategoryItem color="#d52835" title="REPORT" onNavigate={handleNavigation}/>
+       <CategoryItem color="#49393a" title="RECORD" onNavigate={handleNavigationRecord}/>
+      </View>
 
    </>
   )
 }
 
 export default Home
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    marginTop: 30,
+  }
+})

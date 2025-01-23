@@ -6,7 +6,7 @@ import {
     Platform,
   } from "react-native";
 
-  const CategoryItem = ({ onNavigate }) => {
+  const CategoryItem = ({ onNavigate, title, color}) => {
     return (
       <View style={styles.gridNavItem}>
         <Pressable
@@ -17,8 +17,8 @@ import {
           ]}
           onPress={onNavigate}
         >
-          <View style={styles.innerGridContainer}>
-            <Text style={styles.title}>REPORT</Text>
+          <View style={[styles.innerGridContainer, {backgroundColor: color}]}>
+            <Text style={styles.title}>{title}</Text>
           </View>
         </Pressable>
       </View>
@@ -30,8 +30,8 @@ import {
   const styles = StyleSheet.create({
     gridNavItem: {
       // flex: 1,
-      marginTop: 30,
-      margin: 18,
+      marginTop: 10,
+      marginHorizontal: 18,
       height: 150,
       borderRadius: 8,
       elevation: 8,
@@ -53,7 +53,6 @@ import {
     innerGridContainer: {
       fllex: 1,
       height: "100%",
-      backgroundColor: "black",
       padding: 16,
       borderRadius: 8,
       justifyContent: "center",

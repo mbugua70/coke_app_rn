@@ -19,6 +19,7 @@ import IconButton from "./UI/Icon";
 import Profile from "./screens/Profile";
 import EditProfile from "./screens/EditProfile";
 import BackButtonIcon from "./components/BackButtonIcon";
+import Record from "./screens/Record";
 
 
 const Stack = createNativeStackNavigator();
@@ -85,6 +86,27 @@ function AuthenticatedStack() {
             backgroundColor: GlobalStyles.colors.primary50,
           },
           headerTitle: "Report",
+          headerRight: ({ headerTintColor }) => {
+            return (
+              <IconButton
+                color={GlobalStyles.colors.primary800}
+                size={24}
+                name='person'
+              />
+            );
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name='Record'
+        component={Record}
+        options={{
+          headerShadowVisible: false,
+          contentStyle: {
+            backgroundColor: GlobalStyles.colors.primary50,
+          },
+          headerTitle: "Record",
           headerRight: ({ headerTintColor }) => {
             return (
               <IconButton

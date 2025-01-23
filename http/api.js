@@ -5,8 +5,6 @@ export async function SummaryForm(
   phone,
   age,
   soda,
-  beverage,
-  reason,
   frequency,
   purchase,
   variant,
@@ -44,8 +42,8 @@ export async function SummaryForm(
   formData.append("sub_1_2", phone);
   formData.append("sub_1_3", age);
   formData.append("sub_1_4", soda);
-  formData.append("sub_1_5", beverage);
-  formData.append("sub_1_6", reason);
+  // formData.append("sub_1_5", beverage);
+  // formData.append("sub_1_6", reason);
   formData.append("sub_1_7", frequency);
   formData.append("sub_1_8", purchase);
   formData.append("sub_1_9", variant);

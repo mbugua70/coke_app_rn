@@ -29,12 +29,6 @@ const data = {
     { label: "Yes", value: "Yes" },
     { label: "No", value: "No" },
   ],
-  beverage: [
-    { label: "Soda", value: "Soda" },
-    { label: "Water", value: "Water" },
-    { label: "Juice", value: "Juice" },
-    { label: "Energy Drink", value: "Energy Drink" },
-  ],
   frequency: [
     { label: "Weekly", value: "Weekly" },
     { label: "Daily", value: "Daily" },
@@ -56,14 +50,12 @@ const FormContainerTwo = ({
 }) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredPhone, setEnteredPhone] = useState("");
-  const [enteredReason, setEnteredReason] = useState("");
   const [enteredPurchase, setEnteredPurchase] = useState("");
   const [enteredVariant, setEnteredVariant] = useState("");
   const [enteredPricing, setEnteredPricing] = useState("");
   const [enteredFeedback, setEnteredFeedback] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [enteredSoda, setEnteredSoda] = useState("");
-  const [enteredBeverage, setEnteredBeverage] = useState("");
   const [enteredFrequency, setEnteredFrequency] = useState("");
   const [enteredSku, setEnteredSku] = useState("");
   const [location, setLocation] = useState("");
@@ -86,10 +78,8 @@ const FormContainerTwo = ({
   const {
     name: nameIsValid,
     phone: phoneIsInvalid,
-    beverage: beverageIsInvalid,
     age: ageIsInvalid,
     soda: sodaIsInvalid,
-    reason: reasonIsInValid,
     frequency: frequencyIsInValid,
     variant: variantIsInValid,
     sku: skuIsInValid,
@@ -98,7 +88,7 @@ const FormContainerTwo = ({
     purchase: purchaseIsInValid,
   } = credentialsInvalid;
 
-  console.log(nameIsValid, phoneIsInvalid, beverageIsInvalid, ageIsInvalid, sodaIsInvalid, reasonIsInValid, frequencyIsInValid, variantIsInValid, skuIsInValid, pricingIsInValid, feedbackIsInvalid, purchaseIsInValid)
+  console.log(nameIsValid, phoneIsInvalid, ageIsInvalid, sodaIsInvalid, frequencyIsInValid, variantIsInValid, skuIsInValid, pricingIsInValid, feedbackIsInvalid, purchaseIsInValid)
 
   function updateInputValueHandler(inputType, enteredValue) {
     switch (inputType) {
@@ -107,9 +97,6 @@ const FormContainerTwo = ({
         break;
       case "phone":
         setEnteredPhone(enteredValue);
-        break;
-      case "reason":
-        setEnteredReason(enteredValue);
         break;
       case "purchase":
         setEnteredPurchase(enteredValue);
@@ -128,9 +115,6 @@ const FormContainerTwo = ({
         break;
       case "soda":
         setEnteredSoda(enteredValue);
-        break;
-      case "beverage":
-        setEnteredBeverage(enteredValue);
         break;
       case "frequency":
         setEnteredFrequency(enteredValue);
@@ -151,8 +135,6 @@ const FormContainerTwo = ({
       name: enteredName,
       phone: enteredPhone,
       soda: enteredSoda,
-      reason: enteredReason,
-      beverage: enteredBeverage,
       age: enteredAge,
       soda: enteredSoda,
       frequency: enteredFrequency,
@@ -168,12 +150,12 @@ const FormContainerTwo = ({
 
   useEffect(() => {
     setEnteredAge("");
-    setEnteredBeverage("");
-    setEnteredFeedback(""), setEnteredFrequency(""), setEnteredName("");
+    setEnteredFeedback(""),
+    setEnteredFrequency(""),
+    setEnteredName("");
     setEnteredPhone("");
     setEnteredPricing("");
     setEnteredPurchase("");
-    setEnteredReason("");
     setEnteredSku("");
     setEnteredSoda("");
     setEnteredVariant("");
@@ -226,25 +208,6 @@ const FormContainerTwo = ({
             value={enteredSoda}
             onUpdateValue={updateInputValueHandler.bind(this, "soda")}
             ref={inputRef4}
-          />
-
-          {/* beverage */}
-          <DropdownComponent
-            isInvalid={beverageIsInvalid}
-            label='Choice of beverage'
-            data={data.beverage}
-            value={enteredBeverage}
-            onUpdateValue={updateInputValueHandler.bind(this, "beverage")}
-            ref={inputRef5}
-          />
-
-          <InputTwo
-            label='Reasons'
-            isInvalid = {reasonIsInValid}
-            onUpdateValue={updateInputValueHandler.bind(this, "reason")}
-            value={enteredReason}
-            placeholder='Enter reasons'
-            ref={inputRef6}
           />
 
           {/* frequency */}
