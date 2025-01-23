@@ -99,7 +99,7 @@ const FormContainer = ({ onSubmit, credentialsInvalid, isAuthenticate, name, pho
 
 
           <Input
-          label="Region"
+          label="Password"
           onUpdateValue={updateInputValueHandler.bind(this, 'region')}
           value={enteredRegion}
           isInvalid={regionIsInvalid}

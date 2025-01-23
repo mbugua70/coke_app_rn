@@ -74,13 +74,6 @@ const LocationPicker = ({onLocationHandler, resetForm}) => {
         lat: coords.latitude,
         long: coords.longitude
       })
-
-    //   if(locationObj){
-    //     console.log("Coords got", coords)
-    //   }else{
-    //     console.log("Location not picked")
-    //   }
-
   }
 
   function handleGetMap(){
