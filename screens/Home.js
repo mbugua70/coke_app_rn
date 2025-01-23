@@ -18,8 +18,8 @@ const Home = ({navigation}) => {
      <StatusBar hidden={true}/>
 
       <View style={styles.screen}>
-       <CategoryItem color="#d52835" title="REPORT" onNavigate={handleNavigation}/>
-       <CategoryItem color="#49393a" title="RECORD" onNavigate={handleNavigationRecord}/>
+       <CategoryItem color="#49393a" title="REPORT" onNavigate={handleNavigation}/>
+       {/* <CategoryItem color="#49393a" title="RECORD" onNavigate={handleNavigationRecord}/> */}
       </View>
 
    </>

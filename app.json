@@ -13,7 +13,8 @@
       "backgroundColor": "#000000"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.iguru.co.ke.cocacola"
     },
     "android": {
       "adaptiveIcon": {
@@ -31,7 +32,7 @@
     },
     "plugins": [
       [
-       "expo-location",
+        "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "Allow device app to use your location."
         }
@@ -39,7 +40,9 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/cocacola.ttf"]
+          "fonts": [
+            "./assets/fonts/cocacola.ttf"
+          ]
         }
       ]
     ],
