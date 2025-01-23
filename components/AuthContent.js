@@ -39,7 +39,6 @@ function AuthContent({  onAuthenticate, name, phone, region, isAuthenticate, isU
   }
 
 
-
   return (
     <View style={styles.authContent}>
       <FormContainer
