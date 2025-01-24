@@ -1,20 +1,18 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import {useIsFocused} from "@react-navigation/native"
-import { ActivityIndicator, MD2Colors } from 'react-native-paper';
-
-
-
 import React, { useState, useEffect } from 'react'
 import { GlobalStyles } from '../Constants/Globalcolors';
 import FetchButton from './FetchButton';
 import { fetchRecordData } from '../http/api';
 
+import Toast from "react-native-toast-message";
+
 const OfflineComp =  () => {
     const [phone, setPhone] = useState("");
     const [error, setError] = useState(null)
-    const [Overall, setOverall] = useState(0);
-    const [Today, setToday] = useState(0);
+    const [overall, setOverall] = useState(0);
+    const [today, setToday] = useState(0);
     const [isFetching, setIsFetching] = useState(false)
     const isFocused = useIsFocused();
     console.log("is focused",isFocused);
@@ -33,18 +31,22 @@ const OfflineComp =  () => {
       }, [isFocused])
 
 
+
     async function handleFetchRecord(){
         if(!phone){
           throw new Error("No phone number provided")
         }
         try{
         setIsFetching(true);
-        const data = await fetchRecordData(phone)
-         if(data){
+        const res = await fetchRecordData(phone)
+        setIsFetching(false)
+         if(res){
+            console.log("Response user data", data)
+            const data = JSON.parse(res);
             setToday(data.today)
             setOverall(data.overall)
          }
-         setIsFetching(false)
+
 
         }catch(error){
             setIsFetching(false);
@@ -56,11 +58,11 @@ const OfflineComp =  () => {
 
    useEffect(() => {
     if(error){
-      Toast.show({
-        type: ALERT_TYPE.DANGER,
-        title: 'Error',
-        textBody: error,
-      })
+        Toast.show({
+            type: "error",
+            text1: "Error",
+            text2: error,
+          });
 
     }
   }, [error])
@@ -69,15 +71,15 @@ const OfflineComp =  () => {
 
   return (
     <View style={styles.screen}>
-        <FetchButton onPress={handleFetchRecord}/>
+        <FetchButton onPress={handleFetchRecord} isFetching={isFetching} />
        <View style={styles.screenContainer}>
           <View style={styles.recordCardOne}>
           <Text style={styles.offlineTitle}>Overall</Text>
-          <Text style={styles.record}>{Overall}</Text>
+          <Text style={styles.record}>{overall}</Text>
           </View>
           <View style={styles.recordCardTwo}>
           <Text style={styles.offlineTitle}>Today</Text>
-          <Text style={styles.record}>{Today}</Text>
+          <Text style={styles.record}>{today}</Text>
           </View>
        </View>
     </View>
