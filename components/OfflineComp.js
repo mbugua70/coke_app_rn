@@ -1,3 +1,4 @@
+import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import {useIsFocused} from "@react-navigation/native"
@@ -14,6 +15,7 @@ const OfflineComp =  () => {
     const [overall, setOverall] = useState(0);
     const [today, setToday] = useState(0);
     const [isFetching, setIsFetching] = useState(false)
+    const [isOffline, setIsOffline] = useState(false);
     const isFocused = useIsFocused();
     console.log("is focused",isFocused);
 
@@ -31,11 +33,31 @@ const OfflineComp =  () => {
       }, [isFocused])
 
 
+      useEffect(() => {
+        const unsubscribe = NetInfo.addEventListener((state) => {
+          setIsOffline(!state.isConnected);
+        });
+
+        return () => unsubscribe();
+      }, []);
+
+
 
     async function handleFetchRecord(){
         if(!phone){
           throw new Error("No phone number provided")
         }
+
+
+        if (isOffline) {
+          Toast.show({
+            type: 'error',
+            text1: 'Network Error',
+            text2: 'No internet connection. Please try again later.',
+          });
+          return;
+        }
+
         try{
         setIsFetching(true);
         const res = await fetchRecordData(phone)
@@ -51,7 +73,7 @@ const OfflineComp =  () => {
             console.log(error);
             setIsFetching(false);
             if(error){
-                setError(error)
+              setError(error.message || 'An error occurred while fetching data.');
             }
         }
    }
