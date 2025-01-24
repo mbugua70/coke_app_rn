@@ -41,17 +41,17 @@ const OfflineComp =  () => {
         const res = await fetchRecordData(phone)
         setIsFetching(false)
          if(res){
-            console.log("Response user data", data)
             const data = JSON.parse(res);
+            console.log("Response user data", data)
             setToday(data.today)
             setOverall(data.overall)
          }
 
-
         }catch(error){
+            console.log(error);
             setIsFetching(false);
             if(error){
-                setError(error.message)
+                setError(error)
             }
         }
    }
