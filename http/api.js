@@ -49,8 +49,8 @@ export async function SummaryForm(
   formData.append("sub_1_10", sku);
   formData.append("sub_1_11", pricing);
   formData.append("sub_1_12", feedback);
-  formData.append("sub_1_13", lat);
-  formData.append("sub_1_14", long);
+  formData.append("sub_1_13", lat ?? "0");
+  formData.append("sub_1_14", long ?? "0");
 
   console.log("Submitting data:", Object.fromEntries(formData.entries()));
 

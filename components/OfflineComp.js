@@ -16,6 +16,7 @@ const OfflineComp =  () => {
     const [today, setToday] = useState(0);
     const [isFetching, setIsFetching] = useState(false)
     const [isOffline, setIsOffline] = useState(false);
+    const [isInternetReachable, setIsInternetReachable] = useState(false);
     const isFocused = useIsFocused();
     console.log("is focused",isFocused);
 
@@ -36,6 +37,7 @@ const OfflineComp =  () => {
       useEffect(() => {
         const unsubscribe = NetInfo.addEventListener((state) => {
           setIsOffline(!state.isConnected);
+          setIsInternetReachable(state.isInternetReachable)
         });
 
         return () => unsubscribe();
@@ -54,6 +56,13 @@ const OfflineComp =  () => {
             type: 'error',
             text1: 'Network Error',
             text2: 'No internet connection. Please try again later.',
+          });
+          return;
+        }else if(!isInternetReachable){
+          Toast.show({
+            type: 'error',
+            text1: 'Network Error',
+            text2: 'No internet access',
           });
           return;
         }
