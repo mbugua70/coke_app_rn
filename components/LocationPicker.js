@@ -81,8 +81,10 @@ const LocationPicker = ({onLocationHandler, resetForm}) => {
   }
 
    React.useEffect(() => {
-
-      }, [isFetchingLocation]);
+       if(pickedLocation){
+        onLocationHandler(pickedLocation)
+       }
+      }, [isFetchingLocation, pickedLocation]);
 
 
       let content = <Text style={styles.text}>You have no location picked yet</Text>

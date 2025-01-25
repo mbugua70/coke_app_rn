@@ -4,7 +4,6 @@ export async function SummaryForm(
   name,
   phone,
   age,
-  soda,
   frequency,
   purchase,
   variant,
@@ -14,7 +13,7 @@ export async function SummaryForm(
   lat,
   long
 ) {
-  console.log("API Testing");
+  console.log("API Testing location", lat, long);
 
   const token = await AsyncStorage.getItem("token");
   console.log("Token from AsyncStorage:", token);
@@ -41,7 +40,7 @@ export async function SummaryForm(
   formData.append("sub_1_1", name);
   formData.append("sub_1_2", phone);
   formData.append("sub_1_3", age);
-  formData.append("sub_1_4", soda);
+  // formData.append("sub_1_4", soda);
   // formData.append("sub_1_5", beverage);
   // formData.append("sub_1_6", reason);
   formData.append("sub_1_7", frequency);
@@ -50,8 +49,8 @@ export async function SummaryForm(
   formData.append("sub_1_10", sku);
   formData.append("sub_1_11", pricing);
   formData.append("sub_1_12", feedback);
-  formData.append("sub_1_13", lat ?? "0");
-  formData.append("sub_1_14", long ?? "0");
+  formData.append("sub_1_13", lat);
+  formData.append("sub_1_14", long);
 
   console.log("Submitting data:", Object.fromEntries(formData.entries()));
 

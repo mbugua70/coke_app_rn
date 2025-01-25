@@ -1,5 +1,5 @@
 import NetInfo from '@react-native-community/netinfo';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Alert, StyleSheet, View, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SummaryForm } from "../http/api";
@@ -13,11 +13,11 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
   const [isSubmiting, setIsSubmitting] = useState(false);
   const [resetForm, setResetForm] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
+  const [isInternetReachable, setIsInternetReachable] = useState(false);
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     name: false,
     phone: false,
     age: false,
-    soda: false,
     beverage: false,
     reason: false,
     frequency: false,
@@ -32,6 +32,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {
       setIsOffline(!state.isConnected);
+      setIsInternetReachable(state.isInternetReachable);
     });
 
     return () => unsubscribe();
@@ -42,7 +43,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
       name,
       phone,
       age,
-      soda,
       frequency,
       purchase,
       variant,
@@ -56,7 +56,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     phone = phone.trim();
     name = name.trim();
     age = age.trim();
-    soda = soda.trim();
     frequency = frequency.trim();
     variant = variant.trim();
     sku = sku.trim();
@@ -64,19 +63,18 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     purchase = purchase.trim();
 
     const nameIsValid = name.length > 2;
+    const phoneText = phone.replace(/\s+/g, '');
     const phoneRegex = /^[0-9]{7,15}$/;
-    const phoneIsValid = phoneRegex.test(phone);
-    const ageIsValid = age.length > 2;
-    const sodaIsValid = soda.length > 1;
-    const frequencyIsValid = frequency.length > 2;
-    const variantIsValid = variant.length > 2;
-    const skuIsValid = sku.length > 2;
-    const feedbackIsvalid = feedback.length > 2;
-    const pricingIsValid = pricing.length > 2;
-    const purchaseIsValid = purchase.length > 2;
+    const phoneIsValid = phoneRegex.test(phoneText);
+    const ageIsValid = age.length > 1;
+    const frequencyIsValid = frequency.length > 1;
+    const variantIsValid = variant.length > 1;
+    const skuIsValid = sku.length > 1;
+    const feedbackIsvalid = feedback.length > 1;
+    const pricingIsValid = pricing.length > 1;
+    const purchaseIsValid = purchase.length > 1;
 
     if (
-      !sodaIsValid ||
       !ageIsValid ||
       !nameIsValid ||
       !phoneIsValid ||
@@ -90,7 +88,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
       Alert.alert("Invalid input", "Please check your input values.");
       setCredentialsInvalid({
         name: !nameIsValid,
-        soda: !sodaIsValid,
         age: !ageIsValid,
         phone: !phoneIsValid,
         frequency: !frequencyIsValid,
@@ -110,6 +107,13 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
                 text2: 'No internet connection. Please try again later.',
               });
               return;
+            }else if(!isInternetReachable){
+              Toast.show({
+                type: 'error',
+                text1: 'Network Error',
+                text2: 'No internet access',
+              });
+              return;
             }
 
     try {
@@ -118,7 +122,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
 
       setCredentialsInvalid({
         name: !nameIsValid,
-        soda: !sodaIsValid,
         age: !ageIsValid,
         phone: !phoneIsValid,
         frequency: !frequencyIsValid,
@@ -135,7 +138,6 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
         name,
         phone,
         age,
-        soda,
         frequency,
         purchase,
         variant,

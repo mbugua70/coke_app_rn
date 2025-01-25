@@ -55,7 +55,6 @@ const FormContainerTwo = ({
   const [enteredPricing, setEnteredPricing] = useState("");
   const [enteredFeedback, setEnteredFeedback] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
-  const [enteredSoda, setEnteredSoda] = useState("");
   const [enteredFrequency, setEnteredFrequency] = useState("");
   const [enteredSku, setEnteredSku] = useState("");
   const [location, setLocation] = useState("");
@@ -79,7 +78,6 @@ const FormContainerTwo = ({
     name: nameIsValid,
     phone: phoneIsInvalid,
     age: ageIsInvalid,
-    soda: sodaIsInvalid,
     frequency: frequencyIsInValid,
     variant: variantIsInValid,
     sku: skuIsInValid,
@@ -88,7 +86,6 @@ const FormContainerTwo = ({
     purchase: purchaseIsInValid,
   } = credentialsInvalid;
 
-  console.log(nameIsValid, phoneIsInvalid, ageIsInvalid, sodaIsInvalid, frequencyIsInValid, variantIsInValid, skuIsInValid, pricingIsInValid, feedbackIsInvalid, purchaseIsInValid)
 
   function updateInputValueHandler(inputType, enteredValue) {
     switch (inputType) {
@@ -113,9 +110,6 @@ const FormContainerTwo = ({
       case "age":
         setEnteredAge(enteredValue);
         break;
-      case "soda":
-        setEnteredSoda(enteredValue);
-        break;
       case "frequency":
         setEnteredFrequency(enteredValue);
         break;
@@ -126,7 +120,7 @@ const FormContainerTwo = ({
   }
 
   function takeLocationHandler(pickedlocation) {
-    console.log("the pickedloc 2");
+    console.log("Picked location is", pickedlocation)
     setLocation(pickedlocation);
   }
 
@@ -134,9 +128,7 @@ const FormContainerTwo = ({
     onSubmit({
       name: enteredName,
       phone: enteredPhone,
-      soda: enteredSoda,
       age: enteredAge,
-      soda: enteredSoda,
       frequency: enteredFrequency,
       purchase: enteredPurchase,
       variant: enteredVariant,
@@ -157,7 +149,6 @@ const FormContainerTwo = ({
     setEnteredPricing("");
     setEnteredPurchase("");
     setEnteredSku("");
-    setEnteredSoda("");
     setEnteredVariant("");
   }, [resetForm]);
 
@@ -201,14 +192,6 @@ const FormContainerTwo = ({
           />
 
           {/* soda */}
-          <DropdownComponent
-            isInvalid={sodaIsInvalid}
-            label='Do you take soda'
-            data={data.sodaData}
-            value={enteredSoda}
-            onUpdateValue={updateInputValueHandler.bind(this, "soda")}
-            ref={inputRef4}
-          />
 
           {/* frequency */}
           <DropdownComponent
