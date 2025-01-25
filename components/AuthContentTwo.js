@@ -1,3 +1,4 @@
+import NetInfo from '@react-native-community/netinfo';
 import { useState } from "react";
 import { Alert, StyleSheet, View, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -11,6 +12,7 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
   const [isSubmiting, setIsSubmitting] = useState(false);
   const [resetForm, setResetForm] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     name: false,
     phone: false,
@@ -26,6 +28,14 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
     feedback: false,
     purchase: false,
   });
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setIsOffline(!state.isConnected);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   async function submitHandler(credentials) {
     let {
@@ -92,6 +102,15 @@ function AuthContentTwo({ isLogin, onAuthenticate }) {
       });
       return;
     }
+
+      if (isOffline) {
+              Toast.show({
+                type: 'error',
+                text1: 'Network Error',
+                text2: 'No internet connection. Please try again later.',
+              });
+              return;
+            }
 
     try {
       // Submit the form data
