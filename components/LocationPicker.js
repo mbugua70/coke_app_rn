@@ -11,7 +11,10 @@ import {
   useRoute,
 } from "@react-navigation/native";
 import { GlobalStyles } from "../Constants/Globalcolors";
+
+
 import SecondaryButton from "./SecondaryButton";
+import Toast from "react-native-toast-message";
 
 const LocationPicker = ({ onLocationHandler, resetForm }) => {
   const [locationPermissionInformation, requestPermission] =
@@ -129,14 +132,12 @@ const LocationPicker = ({ onLocationHandler, resetForm }) => {
         text1: "Network Error",
         text2: "No internet connection. Please try again later.",
       });
-      return;
     } else if (!isInternetReachable) {
       Toast.show({
         type: "error",
         text1: "Network Error",
         text2: "No internet access, Couldn't  preview your map",
       });
-      return;
     }
     const locationUrl = getGoogleMapPreview(
       pickedLocation.lat,
